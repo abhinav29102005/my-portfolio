@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhinav Kumar Singh - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,107,53,0.2);
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav a {
+            color: #e5e5e5;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff6b35, #f7931e);
+            transition: width 0.3s ease;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 4rem;
+            background: radial-gradient(ellipse at top, rgba(255,107,53,0.15), transparent 50%),
+                        radial-gradient(ellipse at bottom, rgba(247,147,30,0.1), transparent 50%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ff6b35;
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50px) translateX(30px); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-greeting {
+            font-size: 1.2rem;
+            color: #ff6b35;
+            margin-bottom: 0.5rem;
+            animation: fadeIn 1s ease 0.2s both;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, #ff6b35, #f7931e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeIn 1s ease 0.4s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            color: #ff6b35;
+            margin-bottom: 1rem;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            animation: fadeIn 1s ease 0.6s both;
+        }
+
+        .typing-text {
+            border-right: 3px solid #ff6b35;
+            padding-right: 5px;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { border-color: #ff6b35; }
+            51%, 100% { border-color: transparent; }
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: #b3b3b3;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            animation: fadeIn 1s ease 0.8s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease 1s both;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #b3b3b3;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: #ff6b35;
+            transform: translateX(5px);
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+            animation: fadeIn 1s ease 1.2s both;
+        }
+
+        .tech-pill {
+            background: linear-gradient(135deg, rgba(255,107,53,0.2), rgba(247,147,30,0.2));
+            border: 1px solid rgba(255,107,53,0.4);
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            animation: popIn 0.5s ease backwards;
+        }
+
+        .tech-pill:nth-child(1) { animation-delay: 1.3s; }
+        .tech-pill:nth-child(2) { animation-delay: 1.4s; }
+        .tech-pill:nth-child(3) { animation-delay: 1.5s; }
+        .tech-pill:nth-child(4) { animation-delay: 1.6s; }
+        .tech-pill:nth-child(5) { animation-delay: 1.7s; }
+        .tech-pill:nth-child(6) { animation-delay: 1.8s; }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .tech-pill:hover {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255,107,53,0.4);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease 1.4s both;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255,107,53,0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255,107,53,0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 6rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(45deg, #ffffff, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b35, #f7931e);
+            border-radius: 2px;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255,107,53,0.2);
+            position: relative;
+            animation: cardAppear 0.6s ease backwards;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(30px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b35, #f7931e);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255,107,53,0.3);
+            border-color: #ff6b35;
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #ffffff;
+        }
+
+        .card-desc {
+            color: #b3b3b3;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .card-tech {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: rgba(255,107,53,0.2);
+            color: #ff6b35;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(255,107,53,0.3);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-radius: 20px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 3rem;
+            position: relative;
+            border: 2px solid rgba(255,107,53,0.3);
+            animation: modalSlideIn 0.4s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: scale(0.8) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255,107,53,0.2);
+            border: none;
+            color: #ff6b35;
+            font-size: 2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: #ff6b35;
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .modal-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #b3b3b3;
+        }
+
+        .modal-description {
+            line-height: 1.8;
+            color: #e5e5e5;
+            margin-bottom: 2rem;
+        }
+
+        .modal-features {
+            margin-bottom: 2rem;
+        }
+
+        .modal-features h3 {
+            color: #ff6b35;
+            margin-bottom: 1rem;
+        }
+
+        .modal-features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .modal-features li {
+            padding: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #b3b3b3;
+            line-height: 1.6;
+        }
+
+        .modal-features li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #ff6b35;
+            font-weight: bold;
+        }
+
+        .modal-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 3rem auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #ff6b35, #f7931e);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 3rem;
+            animation: slideInLeft 0.6s ease backwards;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #ff6b35;
+            border-radius: 50%;
+            border: 4px solid #0a0a0a;
+            box-shadow: 0 0 20px rgba(255,107,53,0.5);
+        }
+
+        .timeline-content {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,107,53,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: #ff6b35;
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(255,107,53,0.2);
+        }
+
+        .timeline-date {
+            color: #ff6b35;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-org {
+            color: #f7931e;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-desc {
+            color: #b3b3b3;
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,107,53,0.2);
+            transition: all 0.3s ease;
+            animation: scaleIn 0.6s ease backwards;
+        }
+
+        .skill-card:nth-child(1) { animation-delay: 0.1s; }
+        .skill-card:nth-child(2) { animation-delay: 0.2s; }
+        .skill-card:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .skill-card:hover {
+            border-color: #ff6b35;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255,107,53,0.2);
+        }
+
+        .skill-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #ff6b35;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .skill-item {
+            background: rgba(255,107,53,0.1);
+            color: #e5e5e5;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255,107,53,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: rgba(255,107,53,0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            padding: 3rem 4rem;
+            border-top: 2px solid #ff6b35;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255,107,53,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff6b35;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,107,53,0.3);
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(255,107,53,0.4);
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(255,107,53,0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero { padding: 0 2rem; }
+            .hero-title { font-size: 3rem; }
+            .content-section { padding: 4rem 2rem; }
+            .nav { display: none; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .modal-content { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">Abhinav Kumar Singh</div>
+        <nav>
+            <ul class="nav">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="particles"></div>
+        <div class="hero-content">
+            <div class="hero-greeting">Hello, I'm</div>
+            <h1 class="hero-title">Abhinav Kumar Singh</h1>
+            <h2 class="hero-subtitle"><span class="typing-text" id="typingText"></span></h2>
+            <p class="hero-description">B.Tech student at Thapar Institute of Engineering and Technology, passionate about building innovative solutions using cutting-edge technologies. Specializing in full-stack development, machine learning, and computer vision.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">📧 asingh2910.official@gmail.com</div>
+                <div class="contact-item">📱 +91 6398 779 479</div>
+                <div class="contact-item">📍 Patiala, Punjab</div>
+            </div>
+
+            <div class="tech-stack">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">JavaScript</span>
+                <span class="tech-pill">React</span>
+                <span class="tech-pill">Node.js</span>
+                <span class="tech-pill">Machine Learning</span>
+                <span class="tech-pill">Computer Vision</span>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">View My Projects</a>
+                <a href="https://www.linkedin.com/in/bigboyaks/" target="_blank" class="btn btn-secondary">LinkedIn</a>
+                <a href="https://github.com/abhinav29102005" target="_blank" class="btn btn-secondary">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="content-section" id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card" onclick="openModal('lumo')">
+                <div class="card-content">
+                    <h3 class="card-title">Lumo - Real-Time Collaborative Whiteboard</h3>
+                    <p class="card-desc">Full-stack collaborative whiteboard with real-time synchronization, multi-user support, and advanced drawing tools.</p>
+                    <div class="card-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Socket.IO</span>
+                        <span class="tech-tag">TailwindCSS</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('yoga')">
+                <div class="card-content">
+                    <h3 class="card-title">Yoga AI - Pose Correction System</h3>
+                    <p class="card-desc">AI-powered real-time yoga pose analysis and correction system using computer vision and pose estimation.</p>
+                    <div class="card-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">MediaPipe</span>
+                        <span class="tech-tag">OpenCV</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openModal('dominos')">
+                <div class="card-content">
+                    <h3 class="card-title">Domino's Menu Planner</h3>
+                    <p class="card-desc">Budget-optimized meal planning app with dynamic item combinations using Kotlin and Jetpack Compose.</p>
+                    <div class="card-tech">
+                        <span class="tech-tag">Kotlin</span>
+                        <span class="tech-tag">Jetpack Compose</span>
+                        <span class="tech-tag">Android</span>
+                        <span class="tech-tag">Algorithm Design</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openModal('iei')">
+                <div class="card-content">
+                    <h3 class="card-title">IEI-WEBSITE - Institution Website</h3>
+                    <p class="card-desc">Full-stack MERN application for Institution of Engineers (India) - Thapar Chapter with user management.</p>
+                    <div class="card-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Express</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openModal('cloak')">
+                <div class="card-content">
+                    <h3 class="card-title">Invisible Cloak - CV Magic Trick</h3>
+                    <p class="card-desc">Real-time invisibility effect using chroma key algorithm and background subtraction with OpenCV.</p>
+                    <div class="card-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">OpenCV</span>
+                        <span class="tech-tag">NumPy</span>
+                        <span class="tech-tag">Computer Vision</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openModal('dsa')">
+                <div class="card-content">
+                    <h3 class="card-title">DS-ASSIGNMENTS - DSA Lab Solutions</h3>
+                    <p class="card-desc">Comprehensive collection of Data Structures and Algorithms implementations covering core DSA concepts.</p>
+                    <div class="card-tech">
+                        <span class="tech-tag">C++</span>
+                        <span class="tech-tag">Algorithms</span>
+                        <span class="tech-tag">Data Structures</span>
+                        <span class="tech-tag">Problem Solving</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openModal('snake')">
+                <div class="card-content">
+                    <h3 class="card-title">Snaky Baby - Gesture-Controlled Snake</h3>
+                    <p class="card-desc">Classic Snake game reimagined with hand gesture recognition for multiplayer hands-free gaming experience.</p>
+                    <div class="card-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">OpenCV</span>
+                        <span class="tech-tag">MediaPipe</span>
+                        <span class="tech-tag">Tkinter</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openModal('churn')">
+                <div class="card-content">
+                    <h3 class="card-title">Telecom Tension - Customer Churn Prediction</h3>
+                    <p class="card-desc">Machine learning model to predict customer churn with interactive Streamlit dashboard for real-time predictions.</p>
+                    <div class="card-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">Pandas</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openModal('spaceship')">
+                <div class="card-content">
+                    <h3 class="card-title">Spaceship Game with Gesture Control</h3>
+                    <p class="card-desc">Innovative spaceship shooter controlled entirely by hand gestures using computer vision technology.</p>
+                    <div class="card-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">OpenCV</span>
+                        <span class="tech-tag">MediaPipe</span>
+                        <span class="tech-tag">Computer Vision</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openModal('rag')">
+                <div class="card-content">
+                    <h3 class="card-title">RAG QnA Pipeline</h3>
+                    <p class="card-desc">Advanced Retrieval-Augmented Generation system for accurate, context-aware question answering with reduced hallucinations.</p>
+                    <div class="card-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">Vector DB</span>
+                        <span class="tech-tag">GenAI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="content-section" id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3 class="skill-title">Programming Languages</h3>
+                <div class="skill-list">
+                    <span class="skill-item">C</span>
+                    <span class="skill-item">C++</span>
+                    <span class="skill-item">Python</span>
+                    <span class="skill-item">JavaScript</span>
+                    <span class="skill-item">Kotlin</span>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <h3 class="skill-title">Web & App Development</h3>
+                <div class="skill-list">
+                    <span class="skill-item">React.js</span>
+                    <span class="skill-item">Node.js</span>
+                    <span class="skill-item">Express.js</span>
+                    <span class="skill-item">Firebase</span>
+                    <span class="skill-item">Socket.io</span>
+                    <span class="skill-item">React Native</span>
+                    <span class="skill-item">Jetpack Compose</span>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <h3 class="skill-title">Technologies & Concepts</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Computer Vision</span>
+                    <span class="skill-item">FastAPI</span>
+                    <span class="skill-item">REST APIs</span>
+                    <span class="skill-item">Firebase Auth</span>
+                    <span class="skill-item">Google Cloud</span>
+                    <span class="skill-item">MongoDB</span>
+                    <span class="skill-item">SQLite</span>
+                    <span class="skill-item">Prisma</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="content-section" id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">07/2025 – Present</div>
+                    <h3 class="timeline-title">Executive Member</h3>
+                    <div class="timeline-org">Microsoft Student Learn Chapter (MLSC_TIET)</div>
+                    <p class="timeline-desc">Developing games and websites while contributing to MLSC GitHub. Created innovative projects including a gesture-controlled spaceship shooter game using OpenCV for real-time hand tracking.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">02/2025 – Present</div>
+                    <h3 class="timeline-title">Core Member</h3>
+                    <div class="timeline-org">Institute Of Engineers India (IEI_TIET)</div>
+                    <p class="timeline-desc">Developing games for society fairs and providing technical support. Built the official IEI Society website and created classic games using Python and Pygame library.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="content-section" id="contact">
+        <h2 class="section-title">Let's Connect</h2>
+        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+            <p style="color: #b3b3b3; font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.8;">
+                I'm always excited to collaborate on innovative projects and explore new opportunities. Feel free to reach out!
+            </p>
+            <div class="hero-buttons" style="justify-content: center;">
+                <a href="mailto:asingh2910.official@gmail.com" class="btn btn-primary">Email Me</a>
+                <a href="https://www.linkedin.com/in/bigboyaks/" target="_blank" class="btn btn-secondary">LinkedIn</a>
+                <a href="https://github.com/abhinav29102005" target="_blank" class="btn btn-secondary">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/bigboyaks/" target="_blank" class="social-link">💼</a>
+                <a href="https://github.com/abhinav29102005" target="_blank" class="social-link">💻</a>
+                <a href="mailto:asingh2910.official@gmail.com" class="social-link">📧</a>
+            </div>
+            <p style="color: #888;">&copy; 2024 Abhinav Kumar Singh. Built with passion and code.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop">↑</button>
+
+    <!-- Modals -->
+    <div class="modal" id="modal-lumo">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('lumo')">×</button>
+            <h2 class="modal-title">Lumo - Real-Time Collaborative Whiteboard</h2>
+            <div class="modal-meta">
+                <div class="modal-meta-item">📅 July 2025 - Present</div>
+                <div class="modal-meta-item">👤 Solo Developer</div>
+            </div>
+            <div class="modal-description">
+                <p>Lumo is a full-stack collaborative whiteboard application designed to solve the need for seamless, web-based real-time collaboration. Built with a Next.js frontend and Node.js backend, it enables multiple users to work together simultaneously with instant synchronization.</p>
+            </div>
+            <div class="modal-features">
+                <h3>Key Features & Contributions</h3>
+                <ul>
+                    <li>Engineered complete full-stack architecture with Next.js frontend and Node.js backend for real-time data synchronization</li>
+                    <li>Implemented multi-user collaboration with WebSocket communication using Socket.IO</li>
+                    <li>Developed comprehensive drawing tools including pen, shapes, text, and advanced layer management</li>
+                    <li>Created real-time cursor tracking system showing all participants' positions</li>
+                    <li>Integrated Clerk for secure user authentication and authorization</li>
+                    <li>Utilized Liveblocks for managing real-time presence and data synchronization</li>
+                    <li>Designed intuitive user interface with TailwindCSS for responsive design</li>
+                    <li>Built robust undo/redo functionality and canvas clearing features</li>
+                </ul>
+            </div>
+            <div class="modal-features">
+                <h3>Technologies Used</h3>
+                <div class="card-tech">
+                    <span class="tech-tag">React/Next.js</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Socket.IO</span>
+                    <span class="tech-tag">TailwindCSS</span>
+                    <span class="tech-tag">Clerk</span>
+                    <span class="tech-tag">Liveblocks</span>
+                </div>
+            </div>
+            <div class="modal-links">
+                <a href="#" class="btn btn-primary" target="_blank">View Live Demo</a>
+                <a href="#" class="btn btn-secondary" target="_blank">GitHub Repository</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-churn">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('churn')">×</button>
+            <h2 class="modal-title">Telecom Tension - Customer Churn Prediction</h2>
+            <div class="modal-meta">
+                <div class="modal-meta-item">📅 August 2025 - Present</div>
+                <div class="modal-meta-item">🔗 <a href="#" style="color: #ff6b35;">Live Demo</a></div>
+            </div>
+            <div class="modal-description">
+                <p>A comprehensive machine learning solution addressing the critical business problem of customer attrition in the telecom industry. This project enables companies to predict customer churn and take proactive retention measures.</p>
+            </div>
+            <div class="modal-features">
+                <h3>Project Highlights</h3>
+                <ul>
+                    <li>Completed end-to-end project lifecycle from data cleaning to deployment</li>
+                    <li>Performed extensive data preprocessing and exploratory data analysis to identify key churn indicators</li>
+                    <li>Engineered relevant features to improve model accuracy and predictive power</li>
+                    <li>Developed and evaluated multiple classification algorithms (Random Forest, Logistic Regression, XGBoost)</li>
+                    <li>Selected best-performing model based on accuracy, precision, recall, and F1-score metrics</li>
+                    <li>Built interactive web application using Streamlit for real-time predictions</li>
+                    <li>Implemented user-friendly interface allowing non-technical users to input customer data and get predictions</li>
+                    <li>Deployed model as a web service for easy accessibility</li>
+                </ul>
+            </div>
+            <div class="modal-features">
+                <h3>Technologies Used</h3>
+                <div class="card-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Scikit-learn</span>
+                    <span class="tech-tag">Pandas</span>
+                    <span class="tech-tag">NumPy</span>
+                    <span class="tech-tag">Streamlit</span>
+                    <span class="tech-tag">Machine Learning</span>
+                    <span class="tech-tag">Data Analysis</span>
+                </div>
+            </div>
+            <div class="modal-links">
+                <a href="#" class="btn btn-primary" target="_blank">View Project</a>
+                <a href="#" class="btn btn-secondary" target="_blank">GitHub Code</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-spaceship">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('spaceship')">×</button>
+            <h2 class="modal-title">Spaceship Game with Gesture Control</h2>
+            <div class="modal-meta">
+                <div class="modal-meta-item">📅 August 2025 - Present</div>
+                <div class="modal-meta-item">🔗 <a href="#" style="color: #ff6b35;">Demo Link</a></div>
+            </div>
+            <div class="modal-description">
+                <p>An innovative gaming experience that eliminates traditional input devices by implementing hand gesture controls. This classic spaceship shooter game uses computer vision to track hand movements in real-time, translating them into precise on-screen ship controls.</p>
+            </div>
+            <div class="modal-features">
+                <h3>Technical Implementation</h3>
+                <ul>
+                    <li>Architected complete game logic including player movement, enemy spawning, and collision detection</li>
+                    <li>Integrated OpenCV for real-time video capture from webcam</li>
+                    <li>Implemented MediaPipe library for accurate hand landmark detection and tracking</li>
+                    <li>Developed gesture recognition system to translate hand positions into ship movement commands</li>
+                    <li>Created enemy AI with dynamic spawning patterns and increasing difficulty</li>
+                    <li>Built comprehensive scoring system and game state management</li>
+                    <li>Optimized performance for smooth 60 FPS gameplay with minimal latency</li>
+                    <li>Designed intuitive gesture controls for shooting, movement, and special actions</li>
+                </ul>
+            </div>
+            <div class="modal-features">
+                <h3>Technologies Used</h3>
+                <div class="card-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">OpenCV</span>
+                    <span class="tech-tag">MediaPipe</span>
+                    <span class="tech-tag">Computer Vision</span>
+                    <span class="tech-tag">Pygame</span>
+                    <span class="tech-tag">Hand Tracking</span>
+                </div>
+            </div>
+            <div class="modal-links">
+                <a href="#" class="btn btn-primary" target="_blank">Play Game</a>
+                <a href="#" class="btn btn-secondary" target="_blank">Source Code</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-rag">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('rag')">×</button>
+            <h2 class="modal-title">RAG QnA Pipeline</h2>
+            <div class="modal-meta">
+                <div class="modal-meta-item">📅 August 2025 - Present</div>
+                <div class="modal-meta-item">🔗 <a href="#" style="color: #ff6b35;">API Docs</a></div>
+            </div>
+            <div class="modal-description">
+                <p>An advanced Retrieval-Augmented Generation (RAG) system that addresses the challenge of LLM hallucinations by grounding responses in a specific knowledge base. This pipeline ensures accurate, factual answers by retrieving relevant information before generation.</p>
+            </div>
+            <div class="modal-features">
+                <h3>System Architecture</h3>
+                <ul>
+                    <li>Designed and implemented complete end-to-end Q&A system as sole developer</li>
+                    <li>Built data ingestion pipeline for processing and chunking documents</li>
+                    <li>Implemented document embedding system using state-of-the-art language models</li>
+                    <li>Set up vector database for efficient semantic search and retrieval</li>
+                    <li>Integrated generative AI model for producing context-aware answers</li>
+                    <li>Developed secure FastAPI backend with JWT authentication</li>
+                    <li>Created RAG pipeline combining retrieval and generation for accurate responses</li>
+                    <li>Implemented caching mechanisms to improve response times</li>
+                    <li>Built API endpoints for document upload, querying, and answer generation</li>
+                    <li>Achieved significant reduction in model hallucinations through grounded retrieval</li>
+                </ul>
+            </div>
+            <div class="modal-features">
+                <h3>Technologies Used</h3>
+                <div class="card-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">Vector Databases</span>
+                    <span class="tech-tag">GenAI/RAG</span>
+                    <span class="tech-tag">JWT</span>
+                    <span class="tech-tag">LangChain</span>
+                    <span class="tech-tag">Embeddings</span>
+                </div>
+            </div>
+            <div class="modal-links">
+                <a href="#" class="btn btn-primary" target="_blank">API Documentation</a>
+                <a href="#" class="btn btn-secondary" target="_blank">GitHub Repository</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Modal functions
+        function openModal(id) {
+            const modal = document.getElementById('modal-' + id);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById('modal-' + id);
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on outside click
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Initialize
+        createParticles();
+
+        // Typing animation
+        const typingText = document.getElementById('typingText');
+        const phrases = [
+            'Welcome to my Digital Universe!',
+            'Computer Engineering Student',
+            'AI & ML Enthusiast',
+            'Full Stack Developer',
+            'Building the Future with Code!'
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+
+        function typeEffect() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 50;
+            } else {
+                typingText.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 100;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true;
+                typingSpeed = 2000; // Pause at end
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typingSpeed = 500; // Pause before next phrase
+            }
+
+            setTimeout(typeEffect, typingSpeed);
+        }
+
+        // Start typing effect after a short delay
+        setTimeout(typeEffect, 1500);
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
