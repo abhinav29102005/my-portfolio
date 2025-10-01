@@ -117,6 +117,23 @@ body {
     width: 100%;
 }
 
+/* Mobile Menu Icon */
+.menu-toggle {
+    display: none; /* Hide by default on large screens */
+    background: none;
+    border: none;
+    color: #ff6b35;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 101;
+}
+
+.menu-toggle:hover {
+    color: #f7931e;
+}
+
+
 /* Hero Section */
 .hero {
     min-height: 100vh;
@@ -709,6 +726,9 @@ body {
     transform: translateY(-2px);
 }
 
+/* Modal styles (omitted for brevity, assume unchanged) */
+/* ... */
+
 /* Footer */
 .footer {
     background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
@@ -783,8 +803,45 @@ body {
     /* General Mobile Adjustments */
     body { font-size: 14px; }
     .header { padding: 1rem 1rem; }
-    .nav { display: none; }
     
+    /* Mobile Navbar Setup */
+    .nav {
+        /* Hide the horizontal nav and make it a mobile menu */
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* Position below the header */
+        left: 0;
+        width: 100%;
+        background: #0a0a0a;
+        padding: 1rem 0;
+        border-top: 1px solid rgba(255,107,53,0.2);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+
+    .nav.active {
+        display: flex;
+    }
+
+    .nav li {
+        text-align: center;
+        padding: 0.5rem 0;
+    }
+
+    .nav a {
+        display: block; /* Make links full width */
+        padding: 0.5rem 1rem;
+        font-size: 1.1rem;
+    }
+
+    .nav a::after {
+        content: none; /* Remove underline animation on mobile list */
+    }
+
+    .menu-toggle {
+        display: block; /* Show hamburger icon on mobile */
+    }
+
     /* Hero Section Mobile */
     .hero { padding: 8rem 1rem 2rem 1rem; text-align: center; }
     .hero-content { align-items: center; }

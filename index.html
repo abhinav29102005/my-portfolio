@@ -15,7 +15,7 @@
     <header class="header">
         <div class="logo">Abhinav Kumar Singh</div>
         <nav>
-            <ul class="nav">
+            <ul class="nav" id="mobile-menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
@@ -23,6 +23,9 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
     </header>
 
     <section class="hero" id="home">
@@ -303,7 +306,7 @@
                 <a href="https://github.com/abhinav29102005" target="_blank" class="social-link"><i class="fa-brands fa-github"></i></a>
                 <a href="mailto:asingh2910.official@gmail.com" class="social-link"><i class="fa-solid fa-envelope"></i></a>
             </div>
-            <p style="color: #888;">&copy; 2025 Abhinav Kumar Singh. Built with passion and code.</p>
+            <p style="color: #888;">&copy; 2024 Abhinav Kumar Singh. Built with passion and code.</p>
         </div>
     </footer>
 
@@ -776,6 +779,8 @@
             </div>
         </div>
     </div>
+
+
     <script>
         // Create particles
         function createParticles() {
@@ -813,6 +818,35 @@
                 }
             });
         });
+        
+        // **NEW NAVBAR TOGGLE FUNCTIONALITY**
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (mobileMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+                document.body.style.overflowY = 'hidden'; // Prevent scrolling when menu is open
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+                document.body.style.overflowY = 'auto'; // Re-enable scrolling
+            }
+        }
+
+        menuToggle.addEventListener('click', toggleMobileMenu);
+
+        // Close menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                // Delay closing the menu slightly to allow smooth scroll to start
+                setTimeout(toggleMobileMenu, 100); 
+            });
+        });
+        // **END NEW NAVBAR TOGGLE FUNCTIONALITY**
 
         // Scroll animations (Intersection Observer)
         const observerOptions = {
