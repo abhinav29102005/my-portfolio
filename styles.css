@@ -12,6 +12,45 @@ body {
     line-height: 1.6;
 }
 
+/* -------------------
+/* PRELOADER ANIMATION */
+/* ------------------- */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 1s ease-in-out;
+}
+
+#intro-text {
+    font-size: 4rem;
+    font-weight: 900;
+    opacity: 0;
+    animation: introFade 0.5s ease 0.5s forwards, glow 2s ease-in-out infinite alternate;
+    
+    /* Gradient Text Styling */
+    background: linear-gradient(45deg, #ff6b35, #f7931e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    user-select: none;
+}
+
+@keyframes introFade {
+    to { opacity: 1; }
+}
+
+@keyframes preloaderHide {
+    to { transform: translateY(-100%); }
+}
+
 /* Header */
 .header {
     position: fixed;
@@ -741,10 +780,32 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .hero { padding: 0 2rem; }
-    .hero-title { font-size: 3rem; }
-    .content-section { padding: 4rem 2rem; }
+    /* General Mobile Adjustments */
+    body { font-size: 14px; }
+    .header { padding: 1rem 1rem; }
     .nav { display: none; }
+    
+    /* Hero Section Mobile */
+    .hero { padding: 8rem 1rem 2rem 1rem; text-align: center; }
+    .hero-content { align-items: center; }
+    .hero-title { font-size: 2.8rem; }
+    .hero-subtitle { font-size: 1.4rem; min-height: 40px; justify-content: center; }
+    .contact-info { justify-content: center; gap: 1rem; }
+    .hero-buttons { justify-content: center; }
+    
+    /* Preloader Mobile */
+    #intro-text { font-size: 2.5rem; }
+
+    /* Content Sections Mobile */
+    .content-section { padding: 4rem 1rem; }
+    .section-title { font-size: 2rem; }
     .projects-grid { grid-template-columns: 1fr; }
-    .modal-content { padding: 2rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .timeline::before { left: 10px; }
+    .timeline-item { padding-left: 50px; }
+    .timeline-item::before { left: 0px; width: 15px; height: 15px; }
+
+    /* Modal Mobile */
+    .modal-content { padding: 2rem 1.5rem; }
+    .modal-title { font-size: 1.8rem; }
 }

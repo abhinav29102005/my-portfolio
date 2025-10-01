@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abhinav Kumar Singh - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <div id="preloader">
+        <h1 id="intro-text">bigboyaks</h1>
+    </div>
+
     <header class="header">
         <div class="logo">Abhinav Kumar Singh</div>
         <nav>
@@ -294,9 +299,9 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="social-links">
-                <a href="https://www.linkedin.com/in/bigboyaks/" target="_blank" class="social-link">💼</a>
-                <a href="https://github.com/abhinav29102005" target="_blank" class="social-link">💻</a>
-                <a href="mailto:asingh2910.official@gmail.com" class="social-link">📧</a>
+                <a href="https://www.linkedin.com/in/bigboyaks/" target="_blank" class="social-link"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/abhinav29102005" target="_blank" class="social-link"><i class="fa-brands fa-github"></i></a>
+                <a href="mailto:asingh2910.official@gmail.com" class="social-link"><i class="fa-solid fa-envelope"></i></a>
             </div>
             <p style="color: #888;">&copy; 2024 Abhinav Kumar Singh. Built with passion and code.</p>
         </div>
@@ -809,7 +814,7 @@
             });
         });
 
-        // Scroll animations
+        // Scroll animations (Intersection Observer)
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
@@ -852,9 +857,6 @@
             });
         });
 
-        // Initialize
-        createParticles();
-
         // Typing animation
         const typingText = document.getElementById('typingText');
         const phrases = [
@@ -894,8 +896,36 @@
             setTimeout(typeEffect, typingSpeed);
         }
 
-        // Start typing effect after a short delay
-        setTimeout(typeEffect, 1500);
+        // Initialize particles and run the intro animation
+        function initializePortfolio() {
+            createParticles();
+
+            const preloader = document.getElementById('preloader');
+            const introText = document.getElementById('intro-text');
+            
+            // 1. Wait for intro fade in (0.5s fade-in + 0.5s delay = 1s)
+            setTimeout(() => {
+                // 2. Start fade-out of intro text
+                introText.style.opacity = '0';
+                introText.style.transition = 'opacity 0.5s ease-out';
+                
+                // 3. After fade-out, hide preloader with slide-up animation
+                setTimeout(() => {
+                    preloader.style.animation = 'preloaderHide 1s forwards';
+                    
+                    // 4. Start typing effect after preloader is mostly gone
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                        document.body.style.overflowY = 'auto'; // Re-enable scrolling
+                        typeEffect();
+                    }, 500); // Start typing 0.5s into the slide-up
+                    
+                }, 1000); // 1s after fade-in completes
+            }, 1000); 
+        }
+
+        // Start the process when the page loads
+        document.addEventListener('DOMContentLoaded', initializePortfolio);
 
         // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
